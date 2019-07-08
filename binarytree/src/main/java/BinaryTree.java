@@ -231,4 +231,56 @@ public class BinaryTree<T> {
         return preOrder;
     }
 
+    /**
+     * Search for an element in the tree if found return true else false.
+     *
+     * @param data
+     * @return
+     */
+    boolean contains(T data) {
+
+        return contains(root, data);
+    }
+
+    private boolean contains(TreeNode<T> root, T data) {
+
+        if (root == null) {
+            return false;
+        }
+        if (root.getData().equals(data)) {
+            return true;
+        }
+        return contains(root.getLeft(), data) || contains(root.getRight(), data);
+    }
+
+    /**
+     * print the level order traversal in reverse order.
+     * @return
+     */
+    public List<TreeNode<T>> processNodeInReverseLevelOrderTraversal(){
+
+        List<TreeNode<T>> levelTraversalReverse = new ArrayList<>();
+        if (root == null) {
+            return levelTraversalReverse;
+        }
+        LinkedList<TreeNode<T>> queue = new LinkedList<>();
+        queue.add(root);
+        Stack<TreeNode<T>> stack = new Stack<>();
+        while (!queue.isEmpty()) {
+
+            TreeNode<T> tempNode = queue.poll();
+            stack.push(tempNode);
+            if (tempNode.getRight() != null) {
+                queue.add(tempNode.getRight());
+            }
+            if (tempNode.getLeft() != null) {
+                queue.add(tempNode.getLeft());
+            }
+        }
+        while (!stack.isEmpty()) {
+            levelTraversalReverse.add(stack.pop());
+        }
+        return levelTraversalReverse;
+    }
+
 }

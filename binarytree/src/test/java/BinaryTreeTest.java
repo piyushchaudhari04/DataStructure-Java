@@ -75,4 +75,22 @@ public class BinaryTreeTest {
 
     }
 
+    @Test
+    public void shouldFindDataInTheTree(){
+        BinaryTree<Integer> binaryTree = new BinaryTree<>();
+        binaryTree.add(1);
+        binaryTree.add(2);
+        binaryTree.add(3);
+        binaryTree.add(4);
+        binaryTree.add(5);
+        binaryTree.add(6);
+        binaryTree.add(7);
+
+        boolean isDataPresent = binaryTree.contains(5);
+        Assert.assertTrue(isDataPresent);
+
+        isDataPresent = binaryTree.contains(10);
+        Assert.assertFalse(isDataPresent);
+    }
+
 }
