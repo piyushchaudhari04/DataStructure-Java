@@ -283,4 +283,32 @@ public class BinaryTree<T> {
         return levelTraversalReverse;
     }
 
+    public List<TreeNode<T>> postOrderNonRecursive(){
+        List<TreeNode<T>> postOrder = new ArrayList<>();
+        if(root==null){
+            return postOrder;
+        }
+        Stack<TreeNode<T>> stack = new Stack<>();
+        TreeNode<T> traveller = root;
+        while(true){
+            while(traveller!=null){
+                stack.push(traveller);
+                stack.push(traveller);
+                traveller = traveller.getLeft();
+            }
+
+            if(stack.isEmpty()){
+                break;
+            }
+            traveller = stack.pop();
+            if(!stack.isEmpty() && traveller==stack.peek()){
+                traveller = traveller.getRight();
+            }else {
+                postOrder.add(traveller);
+                traveller = null;
+            }
+        }
+        return postOrder;
+    }
+
 }

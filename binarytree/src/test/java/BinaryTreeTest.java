@@ -93,4 +93,21 @@ public class BinaryTreeTest {
         Assert.assertFalse(isDataPresent);
     }
 
+
+    @Test
+    public void shouldProcessTheNodesPostOrder(){
+
+        BinaryTree<Integer> binaryTree = new BinaryTree<>();
+        binaryTree.add(1);
+        binaryTree.add(2);
+        binaryTree.add(3);
+        binaryTree.add(4);
+        binaryTree.add(5);
+        List<Integer> expected = Arrays.asList(4,5,2,3,1);
+
+        List<TreeNode<Integer>> result = binaryTree.postOrderNonRecursive();
+
+        Assert.assertEquals(expected, result.stream().map(TreeNode::getData).collect(Collectors.toList()));
+    }
+
 }
